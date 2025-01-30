@@ -255,7 +255,6 @@ export const linCanny = (
       point: containedPoints[0],
       type: "Containment"
     };
-    debug.push("Containment detected");
   }
 
   // 2. Vertex-Edge Check with Signed Distance
