@@ -194,7 +194,7 @@ const findClosestPoint = (
   return closestPoint;
 };
 
-// Add the missing helper function
+
 const getClosestPointOnLineSegment = (
   point: Vector2,
   lineStart: Vector2,
@@ -331,7 +331,6 @@ export const linCanny = (
 const checkLineIntersection = (a1: Vector2, a2: Vector2, b1: Vector2, b2: Vector2) => {
   const denominator = (b2.y - b1.y) * (a2.x - a1.x) - (b2.x - b1.x) * (a2.y - a1.y);
   
-  // Lines are parallel
   if (Math.abs(denominator) < 1e-6) return { intersects: false, point: null };
 
   const ua = ((b2.x - b1.x) * (a1.y - b1.y) - (b2.y - b1.y) * (a1.x - b1.x)) / denominator;
@@ -396,7 +395,7 @@ export const vClip = (
     type: "",
   };
 
-  // Improved containment check
+  // Containment check
   const checkContainment = () => {
     const containsPoint = (p: Vector2, polygon: Vector2[]) => {
       let inside = false;
@@ -689,11 +688,9 @@ const handleLine = (
 
   const abLen = ab.length();
   if (abLen < config.epsilon) {
-    // Handle degenerate line segment
     return a.length() <= config.epsilon;
   }
 
-  // Get perpendicular to AB towards origin
   const perp = tripleProduct(ab, ao, ab);
 
   if (perp.length() === 0) {
@@ -704,7 +701,6 @@ const handleLine = (
     return aLen <= abLen && bLen <= abLen;
   }
 
-  // Set new direction to perpendicular
   direction.copy(perp);
   return false;
 };
@@ -725,20 +721,17 @@ const handleTriangle = (
   const acPerp = tripleProduct(ab, ac, ac);
 
   if (abPerp.dot(ao) > 0) {
-    // Origin outside AB edge
     simplex.splice(0, 1); // Remove C
     direction.copy(abPerp);
     return false;
   }
 
   if (acPerp.dot(ao) > 0) {
-    // Origin outside AC edge
     simplex.splice(1, 1); // Remove B
     direction.copy(acPerp);
     return false;
   }
 
-  // Origin inside triangle
   return true;
 };
 
