@@ -22,7 +22,6 @@ const CollisionVisualizer = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw grid
@@ -72,7 +71,6 @@ const CollisionVisualizer = () => {
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      // Add a pulsing effect to make the point more visible
       ctx.beginPath();
       ctx.arc(collisionPoint.x, collisionPoint.y, 10, 0, Math.PI * 2);
       ctx.strokeStyle = 'rgba(239, 68, 68, 0.5)';
@@ -89,7 +87,6 @@ const CollisionVisualizer = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    // Check if click is near any shape center
     shapes.forEach((shape, index) => {
       const dx = x - shape.position.x;
       const dy = y - shape.position.y;
